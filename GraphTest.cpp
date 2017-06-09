@@ -26,6 +26,11 @@ BOOST_AUTO_TEST_CASE(ctr1)
 	BOOST_CHECK_EQUAL(g.getNumberOfVertices(), 1);
 }
 
+BOOST_AUTO_TEST_CASE(ctr_neg)
+{
+	BOOST_CHECK_THROW(Graph(-1), std::invalid_argument);
+}
+
 BOOST_AUTO_TEST_CASE(ctr10)
 {
 	Graph g = Graph(10);
@@ -42,6 +47,15 @@ BOOST_AUTO_TEST_CASE(ctr10)
 	BOOST_CHECK_EQUAL(g.getNeighbors(9).empty(), true);
 	BOOST_CHECK_EQUAL(g.getNeighbors(3).empty(), true);
 	BOOST_CHECK_EQUAL(g.getNeighbors(6).empty(), true);
+	BOOST_CHECK_THROW(g.isAdjacent(-1, 2), std::invalid_argument);
+	BOOST_CHECK_THROW(g.isAdjacent(3, -3), std::invalid_argument);
+	BOOST_CHECK_THROW(g.isAdjacent(-1, -1), std::invalid_argument);
+	BOOST_CHECK_THROW(g.isAdjacent(-1, 12), std::invalid_argument);
+	BOOST_CHECK_THROW(g.isAdjacent(3, 10), std::invalid_argument);
+	BOOST_CHECK_THROW(g.isAdjacent(10, 6), std::invalid_argument);
+	BOOST_CHECK_THROW(g.isAdjacent(11, 17), std::invalid_argument);
+	BOOST_CHECK_THROW(g.getNeighbors(-1), std::invalid_argument);
+	BOOST_CHECK_THROW(g.getNeighbors(10), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(edge1)

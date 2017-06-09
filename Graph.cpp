@@ -6,9 +6,10 @@
  */
 
 #include "Graph.h"
+#include <stdexcept>
 
 Graph::Graph(const int numberOfVertices) {
-	if (numberOfVertices < 0) throw std::exception();
+	if (numberOfVertices < 0) throw std::invalid_argument("numberOfVertices needs to be >= 0");
 	this->numberOfVertices = numberOfVertices;
 	this->edges = new int*[numberOfVertices];
 	for (int i=0;i<numberOfVertices;i++) {
@@ -31,7 +32,7 @@ int Graph::getNumberOfEdges() {
 	return this->numberOfEdges;
 }
 bool Graph::isAdjacent(const int vertex1, const int vertex2) {
-	if (vertex1 < 0 || vertex1 >= numberOfVertices || vertex2 < 0 || vertex2 >= numberOfVertices) throw std::exception();
+	if (vertex1 < 0 || vertex1 >= numberOfVertices || vertex2 < 0 || vertex2 >= numberOfVertices) throw std::invalid_argument("vertex1 or vertex2 has an invalid value");
 	if (this->edges[vertex1][vertex2] == -1) {
 		return false;
 	} else {
@@ -39,7 +40,7 @@ bool Graph::isAdjacent(const int vertex1, const int vertex2) {
 	}
 }
 std::vector<int> Graph::getNeighbors(const int vertex) {
-	if (vertex < 0 || vertex >= numberOfVertices) throw std::exception();
+	if (vertex < 0 || vertex >= numberOfVertices) throw std::invalid_argument("vertex has an invalid value");
 
 	std::vector<int> retval;
 	for (int i=0;i<numberOfVertices;i++) {
@@ -51,7 +52,7 @@ std::vector<int> Graph::getNeighbors(const int vertex) {
 }
 
 void Graph::addEdge(const int vertex1, const int vertex2, const int distance) {
-	if (vertex1 < 0 || vertex1 >= numberOfVertices || vertex2 < 0 || vertex2 >= numberOfVertices) throw std::exception();
+	if (vertex1 < 0 || vertex1 >= numberOfVertices || vertex2 < 0 || vertex2 >= numberOfVertices) throw std::invalid_argument("vertex1 or vertex2 has an invalid value");
 	if (distance < 0) throw std::exception();
 	this->numberOfEdges++;
 	this->edges[vertex1][vertex2] = distance;
