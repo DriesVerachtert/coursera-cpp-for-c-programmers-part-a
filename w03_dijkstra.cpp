@@ -8,8 +8,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctime>
+#include "RandomGraphGenerator.h"
 
 int main(void) {
-	puts("!!!Hello World!!!");
-	return EXIT_SUCCESS;
+	srand (static_cast <unsigned> (time(0)));
+	RandomGraphGenerator g;
+	g.generateGraph(3, 0.1f, 0.3f, 0.2f);
 }

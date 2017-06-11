@@ -16,15 +16,16 @@ public:
 	Graph(const int numberOfVertices);
 	virtual ~Graph();
 
-	int getNumberOfVertices();
-	int getNumberOfEdges();
-	bool isAdjacent(const int vertex1, const int vertex2);
-	std::vector<int> getNeighbors(const int vertex);
-	void addEdge(const int vertex1, const int vertex2, const int distance);
+	int getNumberOfVertices() const;
+	int getNumberOfEdges() const;
+	bool isAdjacent(const int vertex1, const int vertex2) const;
+	std::vector<int> getNeighbors(const int vertex) const;
+	void addEdge(const int vertex1, const int vertex2, const float distance);
+	float getDistanceOfEdge(const int vertex1, const int vertex2) const;
 private:
-	int** edges = nullptr;
-	int numberOfVertices;
-	int numberOfEdges;
+	float** edges = nullptr;
+	int numOfVertices;
+	int numOfEdges;
 };
 
 #endif /* GRAPH_H_ */
