@@ -4,3 +4,4 @@ w03_dijkstra
 GraphTest
 RandomGraphGeneratorTest
 ShortestPathCalculatorTest
+PriorityQueueTest
