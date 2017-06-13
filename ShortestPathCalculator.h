@@ -13,7 +13,7 @@ class ShortestPathCalculator {
 public:
 	ShortestPathCalculator(const Graph& graph): _graph(graph) {};
 	virtual ~ShortestPathCalculator();
-	void calculateShortestPath(int startVertex, int endVertex);
+	std::pair<float,std::vector<int>> calculateShortestPath(int startVertex, int endVertex);
 private:
 	const Graph& _graph;
 };

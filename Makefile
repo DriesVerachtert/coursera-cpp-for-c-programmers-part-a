@@ -22,4 +22,4 @@ test:
 	./GraphTest --log_level=warning --report_level=short
 	./RandomGraphGeneratorTest --log_level=warning --report_level=short
 	./ShortestPathCalculatorTest --log_level=warning --report_level=short
-	./PriorityQueueTest --log_level=warning --report_level=short
+	./PriorityQueueTest #--log_level=warning #--report_level=short
