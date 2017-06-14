@@ -2,7 +2,7 @@
  * ShortestPathCalculator.cpp
  *
  *  Created on: 10 Jun 2017
- *      Author: dries
+ *      Author: Dries Verachtert
  */
 
 #include "ShortestPathCalculator.h"
@@ -12,10 +12,11 @@
 #include <limits>
 #include "PriorityQueue.h"
 
-
-ShortestPathCalculator::~ShortestPathCalculator() {
-}
-
+/*
+ * Return a pair of the shortest distance and a vector with the vertices in the path
+ * If no path exists, an std::domain_error is thrown
+ * See https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Pseudocode for details
+ */
 std::pair<float,std::vector<int>>  ShortestPathCalculator::calculateShortestPath(const int startVertex, const int endVertex) {
 	if (startVertex < 0 || startVertex >= _graph.getNumberOfVertices() || endVertex < 0 || endVertex >= _graph.getNumberOfVertices()) throw std::invalid_argument("startVertex or endVertex not valid");
 
@@ -31,9 +32,13 @@ std::pair<float,std::vector<int>>  ShortestPathCalculator::calculateShortestPath
 	while (pq.getSize() > 0) {
 		int closestVertex = pq.getKeyWithMinPriority();
 		float distanceToClosestVertex = pq.getPriority(closestVertex);
+
+		// error situation: the remaining vertices are not reachable by an edge
 		if (distanceToClosestVertex == std::numeric_limits<float>::max()) {
 			throw std::domain_error("no path between those vertices");
 		}
+
+		// end situation: the closest vertex is the end vertex
 		if (closestVertex == endVertex) {
 			std::vector<int> path;
 			int someVertex = closestVertex;
@@ -47,8 +52,9 @@ std::pair<float,std::vector<int>>  ShortestPathCalculator::calculateShortestPath
 			retval.second = path;
 			return retval;
 		}
-		pq.remove(closestVertex);
 
+		// normal situation: handle neighbours
+		pq.remove(closestVertex);
 		std::vector<int> neighbours = _graph.getNeighbors(closestVertex);
 		for (auto const& neighbourVertex: neighbours) {
 			float calculatedDistance = distanceToClosestVertex + _graph.getDistanceOfEdge(closestVertex, neighbourVertex);
@@ -60,5 +66,6 @@ std::pair<float,std::vector<int>>  ShortestPathCalculator::calculateShortestPath
 		}
 	}
 
+	// should never happen
 	throw std::domain_error("could not calculate path");
 }

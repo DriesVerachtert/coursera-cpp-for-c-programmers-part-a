@@ -2,7 +2,7 @@
  * PriorityQueueTest.cpp
  *
  *  Created on: 12 Jun 2017
- *      Author: dries
+ *      Author: Dries Verachtert
  */
 
 #define BOOST_TEST_DYN_LINK
@@ -12,6 +12,9 @@
 #include <vector>
 #include <stdexcept>
 
+/*
+ * Check if the priority queue works correctly.
+ */
 BOOST_AUTO_TEST_SUITE(PriorityQueueTestSuite)
 
 BOOST_AUTO_TEST_CASE(test1) {

@@ -1,6 +1,6 @@
 *.o
 *~
-w03_dijkstra
+W03Dijkstra
 GraphTest
 RandomGraphGeneratorTest
 ShortestPathCalculatorTest

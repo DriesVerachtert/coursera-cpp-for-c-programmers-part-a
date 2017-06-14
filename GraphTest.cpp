@@ -2,7 +2,7 @@
  * GraphTest.cpp
  *
  *  Created on: 8 Jun 2017
- *      Author: dries
+ *      Author: Dries Verachtert
  */
 
 #define BOOST_TEST_DYN_LINK
@@ -11,6 +11,10 @@
 #include <Graph.h>
 #include <vector>
 
+
+/*
+ * Test the Graph class
+ */
 BOOST_AUTO_TEST_SUITE(GraphTestSuite)
 
 BOOST_AUTO_TEST_CASE(ctr0) {
@@ -110,7 +114,5 @@ BOOST_AUTO_TEST_CASE(edge3) {
 	BOOST_CHECK_THROW(g.getDistanceOfEdge(0, 5), std::invalid_argument);
 	BOOST_CHECK_THROW(g.getDistanceOfEdge(1, 0), std::invalid_argument);
 }
-
-
 
 BOOST_AUTO_TEST_SUITE_END()

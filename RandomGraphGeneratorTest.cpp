@@ -2,7 +2,7 @@
  * RandomGraphGeneratorTest.cpp
  *
  *  Created on: 10 Jun 2017
- *      Author: dries
+ *      Author: Dries Verachtert
  */
 
 #define BOOST_TEST_DYN_LINK
@@ -12,6 +12,10 @@
 #include <vector>
 #include <stdexcept>
 
+/*
+ * Test the generation of random graphs.
+ * By using a fixed srand, the tests are deterministic.
+ */
 BOOST_AUTO_TEST_SUITE(RandomGraphGeneratorTestSuite)
 
 BOOST_AUTO_TEST_CASE(gen_density) {
@@ -35,7 +39,6 @@ BOOST_AUTO_TEST_CASE(gen_distance) {
 		for (int j=0;j<numVertices;j++) {
 			if (g.isAdjacent(i,j)) {
 				numAdjacent++;
-				//std::cout << "checking " << g.getDistanceOfEdge(i,j) << std::endl;
 				BOOST_CHECK(g.getDistanceOfEdge(i,j) >= 0.3);
 				BOOST_CHECK(g.getDistanceOfEdge(i,j) <= 3.2);
 			}
